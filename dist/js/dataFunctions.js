@@ -53,3 +53,9 @@ export const getCoordsFromApi = async (entryText, units) => {
     console.error("Serverless error:", err.stack);
   }
 };
+
+export const cleanText = (text) => {
+  const regex = / {2,}/g;
+  const entryText = text.replaceAll(regex, " ").trim();
+  return entryText;
+};
