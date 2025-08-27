@@ -1,0 +1,21 @@
+{
+	"siteId": "a2765cbe-8d4d-44f8-9827-9d0a07ad1352",
+	"geolocation": {
+		"data": {
+			"city": "Patna",
+			"country": {
+				"code": "IN",
+				"name": "India"
+			},
+			"subdivision": {
+				"code": "BR",
+				"name": "Bihar"
+			},
+			"timezone": "Asia/Kolkata",
+			"latitude": 25.5943,
+			"longitude": 85.1352,
+			"postalCode": "800001"
+		},
+		"timestamp": 1756315422212
+	}
+}
