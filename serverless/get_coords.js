@@ -1,22 +1,25 @@
-const fetch = require("node-fetch");
+import fetch from 'node-fetch';
 
-const { WEATHER_API_KEY } = process.env;
+export async function handler(event) {
+  const { entryText, units } = JSON.parse(event.body);
+  const apiKey = process.env.WEATHER_API_KEY;
 
-exports.handler = async (event, context) => {
-  const params = JSON.parse(event.body);
-  const { text, units } = params;
-  const regex = /^\d+$/g;
-  const flag = regex.test(text) ? "zip" : "q";
-  const url = `https://api.openweathermap.org/data/2.5/weather?${flag}=${text}&units=${units}&appid=${WEATHER_API_KEY}`;
+  const isZip = /^\d+$/.test(entryText);
+  const flag = isZip ? "zip" : "q";
+  const url = `https://api.openweathermap.org/data/2.5/weather?${flag}=${entryText}&units=${units}&appid=${apiKey}`;
   const encodedUrl = encodeURI(url);
+
   try {
-    const dataStream = await fetch(encodedUrl);
-    const jsonData = await dataStream.json();
+    const response = await fetch(encodedUrl);
+    const data = await response.json();
     return {
       statusCode: 200,
-      body: JSON.stringify(jsonData)
+      body: JSON.stringify(data)
     };
   } catch (err) {
-    return { statusCode: 422, body: err.stack };
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: err.message })
+    };
   }
-};
+}

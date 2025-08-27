@@ -1,4 +1,9 @@
 [build]
-    publish = "dist"
+  publish = "dist"
+  functions = "serverless"
 
-    functions = "serverless"
+[dev]
+  envFiles = [".env"]
+
+[functions]
+  node_bundler = "esbuild"
