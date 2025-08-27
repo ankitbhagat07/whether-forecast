@@ -3,7 +3,6 @@ import {
   getHomeLocation,
   getWeatherFromCoords,
   getCoordsFromApi,
-  cleanText
 } from "./dataFunctions.js";
 import {
   setPlaceholderText,
